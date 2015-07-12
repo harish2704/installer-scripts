@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+. $(dirname $(readlink -f $0))/installer_common;
+export extractedName='node-v0.12.7-linux-x64';
+export installationPath="$appDir/$extractedName";
+
+downloadPack(){
+  wget -c 'https://nodejs.org/dist/v0.12.7/node-v0.12.7-linux-x64.tar.gz';
+}
+
+installPack(){
+  tar -xzvf 'node-v0.12.7-linux-x64.tar.gz';
+  cd "$extractedName";
+  find ./bin -type f -or -type l  -executable > 'binaries.lst';
+}
+
+
+mainInstaller;

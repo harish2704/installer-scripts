@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+installTmp="$HOME/.local/installTmp";
+appDir="$HOME/.local/Apps";
+localBinDir="$HOME/.local/bin";
+
+checkPaths() {
+  for i in $installTmp $appDir $localBinDir; do
+    if [ ! -d "$i" ]; then
+      mkdir -p "$i";
+    fi
+  done
+}
+
+performDownloads(){
+  cd "$installTmp";
+  downloadPack;
+}
+
+doInstall(){
+
+  for i in $extractedName $installationPath; do
+    if [ -d "$i" ]; then
+      rm -rf "$i"
+    fi 
+  done
+  installPack;
+  cd "$installTmp";
+  mv "$extractedName" "$installationPath";
+}
+
+mainInstaller(){
+  checkPaths;
+  performDownloads;
+  doInstall;
+}
+
+
