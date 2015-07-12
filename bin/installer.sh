@@ -21,7 +21,7 @@ updateSelf(){
 }
 
 installPackage(){
-  packageName=$2;
+  packageName=$1;
   . "$appRoot/packages/$packageName";
   mainInstaller;
 }
@@ -36,7 +36,7 @@ case $1 in
     ;;
 
   --install)
-    installPackage;
+    installPackage $2;
     ;;
 esac
 
