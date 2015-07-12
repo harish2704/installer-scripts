@@ -19,14 +19,14 @@ performDownloads(){
 
 doInstall(){
 
-  for i in $extractedName $installationPath; do
+  for i in $appName $installationPath; do
     if [ -d "$i" ]; then
       rm -rf "$i"
     fi 
   done
   installPack;
   cd "$installTmp";
-  mv "$extractedName" "$installationPath";
+  mv "$appName" "$installationPath";
 }
 
 mainInstaller(){
