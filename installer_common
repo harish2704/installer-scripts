@@ -33,6 +33,16 @@ mainInstaller(){
   checkPaths;
   performDownloads;
   doInstall;
+  updateBinLinks;
+}
+
+updateBinLinks(){
+  cd $localBinDir;
+  for i in $(find "$appDir" -name 'binaries.lst'); do
+    for f in $(cat $i);do
+      ls -s $(dirname $i)/$f ./;
+    done;
+  done;
 }
 
 
