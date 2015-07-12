@@ -2,14 +2,13 @@ export appName='installer-scripts';
 export installationPath="$appDir/$appName";
 
 downloadPack(){
-  wget 'https://github.com/harish2704/installer-scripts/archive/master.zip';
+  wget 'https://github.com/harish2704/installer-scripts/archive/master.zip' -O "${appName}.zip";
 }
 
 installPack(){
-  unzip 'master.zip'
+  unzip "${appName}.zip"
   mv 'installer-scripts-master' "$appName";
   cd "$appName";
-  # find ./ -type f -or -type l  -executable > 'binaries.lst';
-  touch 'binaries.lst';
+  find ./bin -type f -or -type l  -executable > 'binaries.lst';
 }
 
