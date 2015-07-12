@@ -19,36 +19,43 @@ performDownloads(){
 
 doInstall(){
 
-  for i in $extractedName $installationPath; do
+  for i in $appName $installationPath; do
     if [ -d "$i" ]; then
       rm -rf "$i"
     fi 
   done
   installPack;
   cd "$installTmp";
-  mv "$extractedName" "$installationPath";
+  mv "$appName" "$installationPath";
+}
+
+updateBinLinks(){
+  cd $localBinDir;
+  for i in $(find "$appDir" -name 'binaries.lst'); do
+    for f in $(cat $i);do
+      ln -s $(dirname $i)/$f ./;
+    done;
+  done;
 }
 
 mainInstaller(){
   checkPaths;
   performDownloads;
   doInstall;
+  updateBinLinks;
 }
-
-
-export extractedName='installer-scripts-master';
-export installationPath="$appDir/$extractedName";
+export appName='installer-scripts';
+export installationPath="$appDir/$appName";
 
 downloadPack(){
-  wget -c 'https://github.com/harish2704/installer-scripts/archive/master.zip';
+  wget 'https://github.com/harish2704/installer-scripts/archive/master.zip' -O "${appName}.zip";
 }
 
 installPack(){
-  unzip 'master.zip'
-  cd "$extractedName";
-  # find ./ -type f -or -type l  -executable > 'binaries.lst';
-  touch 'binaries.lst';
+  unzip "${appName}.zip"
+  mv 'installer-scripts-master' "$appName";
+  cd "$appName";
+  find ./bin -type f -or -type l  -executable > 'binaries.lst';
 }
-
 
 mainInstaller;
