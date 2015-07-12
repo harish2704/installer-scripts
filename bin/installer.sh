@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-echo $0 $1 $2 $3;
 
 if [ -z "$1" ]; then
   cat<<EEE
