@@ -1,10 +1,8 @@
-#!/usr/bin/env bash
-
 export appName='installer-scripts';
 export installationPath="$appDir/$appName";
 
 downloadPack(){
-  wget -c 'https://github.com/harish2704/installer-scripts/archive/master.zip';
+  wget 'https://github.com/harish2704/installer-scripts/archive/master.zip';
 }
 
 installPack(){
@@ -15,5 +13,3 @@ installPack(){
   touch 'binaries.lst';
 }
 
-
-mainInstaller;

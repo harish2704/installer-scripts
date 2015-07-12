@@ -9,11 +9,22 @@ EEE
   exit 1;
 fi
 
-. $(dirname $(readlink -f $0))/../lib/installer_common;
+appRoot=$(readlink -f $(dirname $(readlink -f $0))/.. );
+. "$appRoot/lib/installer_common";
 
 printPackages(){
   cd $appDir/installer-scripts/packages;
   ls;
+}
+
+updateSelf(){
+  $0 --install self;
+}
+
+installPackage(){
+  packageName=$2;
+  . "$appRoot/packages/$packageName";
+  mainInstaller;
 }
 
 case $1 in

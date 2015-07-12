@@ -29,13 +29,6 @@ doInstall(){
   mv "$appName" "$installationPath";
 }
 
-mainInstaller(){
-  checkPaths;
-  performDownloads;
-  doInstall;
-  updateBinLinks;
-}
-
 updateBinLinks(){
   cd $localBinDir;
   for i in $(find "$appDir" -name 'binaries.lst'); do
@@ -45,4 +38,9 @@ updateBinLinks(){
   done;
 }
 
-
+mainInstaller(){
+  checkPaths;
+  performDownloads;
+  doInstall;
+  updateBinLinks;
+}
