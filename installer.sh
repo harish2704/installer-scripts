@@ -33,7 +33,9 @@ updateBinLinks(){
   cd $localBinDir;
   for i in $(find "$appDir" -name 'binaries.lst'); do
     for f in $(cat $i);do
-      ln -s $(dirname $i)/$f ./;
+      if [ ! -L "./$(basename $f)" ]; then
+        ln -s $(dirname $i)/$f ./;
+      fi
     done;
   done;
 }
