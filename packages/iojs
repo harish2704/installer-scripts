@@ -1,0 +1,14 @@
+export appName='iojs-v2.3.4-linux-x64';
+export installationPath="$appDir/$appName";
+
+downloadPack(){
+  wget -c 'https://iojs.org/dist/v2.3.4/iojs-v2.3.4-linux-x64.tar.xz';
+}
+
+installPack(){
+  tar -xJvf 'iojs-v2.3.4-linux-x64.tar.xz';
+  cd "$appName";
+  find ./bin -type f -or -type l  -executable > 'binaries.lst';
+}
+
+
