@@ -33,9 +33,11 @@ updateBinLinks(){
   cd $localBinDir;
   for i in $(find "$appDir" -name 'binaries.lst'); do
     for f in $(cat $i);do
-      if [ ! -L "./$(basename $f)" ]; then
-        ln -s $(dirname $i)/$f ./;
+      if [ -e "./$(basename $f)" ]; then
+        echo "Removing already existing file $(basename $f)"
+        rm "./$(basename $f)";
       fi
+      ln -s $(dirname $i)/$f ./;
     done;
   done;
 }
