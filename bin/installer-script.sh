@@ -12,7 +12,7 @@ appRoot=$(readlink -f $(dirname $(readlink -f $0))/.. );
 . "$appRoot/lib/installer_common";
 
 printPackages(){
-  cd $appDir/installer-scripts/packages;
+  cd "$appRoot/packages";
   ls;
 }
 
