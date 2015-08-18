@@ -38,6 +38,10 @@ case $1 in
   --install)
     installPackage $2;
     ;;
+
+  --check)
+    updateBinLinks;
+    ;;
 esac
 
 
