@@ -12,7 +12,7 @@ appRoot=$(readlink -f $(dirname $(readlink -f $0))/.. );
 printHelp(){
   cat<<EOF
   installer-scripts --update | --check | --install <app_name> | --list
-  EOF
+EOF
 }
 
 printPackages(){
@@ -46,7 +46,8 @@ case $1 in
   --check)
     updateBinLinks;
     ;;
+  *)
+    printHelp;
 esac
-
 
 
