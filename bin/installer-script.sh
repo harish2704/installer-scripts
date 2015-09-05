@@ -2,14 +2,18 @@
 
 
 if [ -z "$1" ]; then
-  cat<<EEE
-  installer-scripts --update | --install <app_name> | --list
-EEE
+  printHelp;
   exit 1;
 fi
 
 appRoot=$(readlink -f $(dirname $(readlink -f $0))/.. );
 . "$appRoot/lib/installer_common";
+
+printHelp(){
+  cat<<EOF
+  installer-scripts --update | --check | --install <app_name> | --list
+  EOF
+}
 
 printPackages(){
   cd "$appRoot/packages";
