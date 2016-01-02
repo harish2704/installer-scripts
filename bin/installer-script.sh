@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
 
 
-if [ -z "$1" ]; then
-  printHelp;
-  exit 1;
-fi
-
 appRoot=$(readlink -f $(dirname $(readlink -f $0))/.. );
 . "$appRoot/lib/installer_common";
 
@@ -43,6 +38,11 @@ installPackage(){
   fi
   mainInstaller;
 }
+
+if [ -z "$1" ]; then
+  printHelp;
+  exit 1;
+fi
 
 case $1 in
   update)
