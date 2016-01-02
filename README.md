@@ -3,9 +3,9 @@ A methodology for installing any software on my ubuntu system. It is supposed to
 
 ## Installation
 
-** Add $HOME/.local/bin to your PATH **
+**Add `$HOME/.local/bin` to your `PATH`**
 ```
-echo "export PATH=\"\$HOME/.local/bin:\$PATH\";" >> ~/.profile
+echo 'export PATH="$HOME/.local/bin:\$PATH";' >> ~/.profile
 ```
 
 ```bash
