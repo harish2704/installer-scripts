@@ -2,6 +2,12 @@
 A methodology for installing any software on my ubuntu system. It is supposed to used by users without privileges, Inspired by home-brew system
 
 ## Installation
+
+** Add $HOME/.local/bin to your PATH **
+```
+echo "export PATH=\"\$HOME/.local/bin:\$PATH\";" >> ~/.profile
+```
+
 ```bash
 wget 'https://raw.githubusercontent.com/harish2704/installer-scripts/master/installer.sh' -O - | sh
 ```
@@ -20,15 +26,21 @@ wget 'https://raw.githubusercontent.com/harish2704/installer-scripts/master/inst
 
 * List aplications that can be installed using 'installer-script.sh'
 ```bash
-installer-script.sh --list
+installer-script.sh list-apps
 ```
 
 * Update 'installer-script' application
 ```bash
-installer-script.sh --update
+installer-script.sh update
 ```
 
 * Install a application using 'installer-script' application
 ```bash
-installer-script.sh --install <app_name>
+installer-script.sh install <app_name>
 ```
+
+## Example
+* `installer-script.sh install nodejs `
+  Installs using in-built installation script.
+* `installer-script.sh install https://github.com/harish2704/neovim-konsole
+  Installs using generic formula.`
