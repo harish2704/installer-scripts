@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 installTmp="$HOME/.local/installTmp";
 appDir="$HOME/.local/Apps";
