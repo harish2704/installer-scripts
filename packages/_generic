@@ -1,0 +1,42 @@
+#!/usr/bin/env sh
+
+export appName
+
+downloadUrl(){
+  url=$1;
+  host='';
+  repo='';
+  tree='';
+
+  case $url in
+    https://github.com/*)
+      host='github.com';
+      url=${url#https://github.com/};
+
+      username=${url%%/*}
+      url=${url#*/}
+
+      repo=${url%%/*}
+      url=${url#*/}
+
+      version=${url%%/*}
+      if [ $version = $url ]; then version='master'; fi;
+
+      export appName="${repo}-${version}"
+      export installationPath="$appDir/$appName";
+      wget -c "https://github.com/$username/$repo/archive/${version}.zip" -O "${appName}.zip"
+      ;;
+  esac
+
+}
+
+
+downloadPack(){
+  downloadUrl $packageName
+}
+
+installPack(){
+  unzip  "${appName}.zip";
+  cd $appName;
+  ./install.sh;
+}
