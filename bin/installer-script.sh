@@ -31,7 +31,7 @@ checkGeneric(){
 
 installPackage(){
   packageName=$1;
-  if [ -z ${packageName%*/} ];then
+  if [ -z ${packageName%*/} -o $packageName = ${packageName%*/} ];then
     . "$appRoot/packages/$packageName";
   else
     . "$appRoot/packages/_generic";
