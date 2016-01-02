@@ -11,7 +11,13 @@ appRoot=$(readlink -f $(dirname $(readlink -f $0))/.. );
 
 printHelp(){
   cat<<EOF
-  installer-scripts --update | --check | --install <app_name> | --list
+  installer-scripts <comamnd> [options]
+  Available commands
+    update  - Self update
+    check   - Check ~/.local/Apps directory for and updates all the links in ~/local/bin directory.
+    install <app_name> - Install an application. See 'list-apps' command to list Available applications.
+                         Other than this list, installer-scripts compatible apps can be directly installed from github
+    list-apps - List installable application names.
 EOF
 }
 
@@ -21,29 +27,37 @@ printPackages(){
 }
 
 updateSelf(){
-  $0 --install self;
+  $0 install self;
+}
+
+checkGeneric(){
+  packageName=$1;
 }
 
 installPackage(){
   packageName=$1;
-  . "$appRoot/packages/$packageName";
+  if [ -z ${packageName%*/} ];then
+    . "$appRoot/packages/$packageName";
+  else
+    . "$appRoot/packages/_generic";
+  fi
   mainInstaller;
 }
 
 case $1 in
-  --update)
+  update)
     updateSelf;
     ;;
 
-  --list)
+  list-apps)
     printPackages;
     ;;
 
-  --install)
+  install)
     installPackage $2;
     ;;
 
-  --check)
+  check)
     updateBinLinks;
     ;;
   *)
