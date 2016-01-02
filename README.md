@@ -40,7 +40,7 @@ installer-script.sh install <app_name>
 ```
 
 ## Example
-* `installer-script.sh install nodejs `
-  Installs using in-built installation script.
-* `installer-script.sh install https://github.com/harish2704/neovim-konsole
-  Installs using generic formula.`
+* `installer-script.sh install nodejs`
+  -> Installs using in-built installation script.
+* `installer-script.sh install https://github.com/harish2704/neovim-konsole`
+  -> Installs using generic formula.`
