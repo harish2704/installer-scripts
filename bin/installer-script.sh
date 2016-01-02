@@ -25,13 +25,10 @@ updateSelf(){
   $0 install self;
 }
 
-checkGeneric(){
-  packageName=$1;
-}
 
 installPackage(){
   packageName=$1;
-  if [ -z ${packageName%*/} -o $packageName = ${packageName%*/} ];then
+  if [ -z ${packageName%/*} -o $packageName = ${packageName%/*} ];then
     . "$appRoot/packages/$packageName";
   else
     . "$appRoot/packages/_generic";
