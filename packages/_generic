@@ -25,6 +25,15 @@ downloadUrl(){
       export appName="${repo}-${version}"
       export installationPath="$appDir/$appName";
       wget -c "https://github.com/$username/$repo/archive/${version}.zip" -O "${appName}.zip"
+      unzip  "${appName}.zip";
+      ;;
+    *)
+      echo "Cloning git repository from $url in $PWD"
+      export appName=$(basename "$url")
+      export installationPath="$appDir/$appName";
+      echo "installationPath = $installationPath"
+      if [ -d "$appName" ]; then rm -rf "$appName"; fi
+      git clone "$url"
       ;;
   esac
 
@@ -36,7 +45,6 @@ downloadPack(){
 }
 
 installPack(){
-  unzip  "${appName}.zip";
   cd $appName;
   ./install.sh;
 }

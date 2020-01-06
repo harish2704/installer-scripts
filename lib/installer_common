@@ -18,12 +18,10 @@ performDownloads(){
 }
 
 doInstall(){
-
-  for i in $appName $installationPath; do
-    if [ -d "$i" ]; then
-      rm -rf "$i"
-    fi 
-  done
+  # Remove application dir if it already exists in installation path
+  if [ -d "$installationPath" ]; then
+    rm -rf "$installationPath"
+  fi
   installPack;
   cd "$installTmp";
   mv "$appName" "$installationPath";
