@@ -29,7 +29,7 @@ doInstall(){
 
 updateBinLinks(){
   cd $localBinDir;
-  for i in $(find "$appDir" -name 'binaries.lst'); do
+  for i in $(find -L "$appDir" -name 'binaries.lst'); do
     for f in $(cat $i);do
       if [ -e "./$(basename $f)" ]; then
         echo "Removing already existing file $(basename $f)"
